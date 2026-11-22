@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e5007d">
+<title>Pink Store | Catálogo Wepink</title>
+<style>
+:root{--pink:#e5007d;--pink2:#f7c5da;--pale:#fff5f9;--ink:#34212b;--muted:#806b76;--line:#f0d5e1;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--pale);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(145deg,#f8c5da,#ffeaf2);padding:36px 18px 28px;text-align:center;border-bottom:1px solid var(--line)}
+.logo{font-size:clamp(46px,10vw,76px);font-weight:900;letter-spacing:-4px;line-height:.95;color:var(--pink)}.logo span{display:block;font-size:.62em;letter-spacing:-2px}
+.pill{display:inline-block;background:var(--pink);color:white;border-radius:99px;padding:6px 15px;font-size:11px;font-weight:800;letter-spacing:1.5px;margin-bottom:24px}
+header p{max-width:540px;margin:18px auto;color:#704b5c}
+.pricegrid{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:22px auto 0;max-width:620px}.pricegrid span{background:#fff;border-radius:12px;padding:9px 14px;font-weight:750;font-size:12px;min-width:145px}.pricegrid b{display:block;color:var(--pink);font-size:16px}
+main{max-width:1050px;margin:auto;padding:22px 15px 90px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.search{flex:1;min-width:200px;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit;background:#fff}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:white;border-radius:99px;padding:10px 13px;font-weight:700;color:var(--muted);cursor:pointer}.filter.active{background:var(--pink);color:#fff;border-color:var(--pink)}
+.section{margin:28px 0}.section h2{font-size:19px;margin:0 0 5px;background:#f8c5da;padding:12px 15px;border-left:5px solid var(--pink);border-radius:10px}.section .sub{color:var(--muted);margin:0 0 13px;font-size:13px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:11px}
+.product{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:7px;min-height:160px;box-shadow:0 2px 8px #7a36500a}
+.tag{font-size:10px;font-weight:850;letter-spacing:.35px;color:#a34e75;background:#fde8f1;padding:3px 7px;border-radius:99px;align-self:flex-start}.product h3{margin:0;font-size:15px}.desc{margin:0;color:var(--muted);font-size:12px;flex:1}.bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}.price{font-weight:900;color:var(--pink);font-size:16px}.add{background:var(--pink);border:0;color:white;padding:9px 13px;border-radius:9px;font-weight:800;cursor:pointer}.add:active,.filter:active,button:active{transform:scale(.98)}
+.empty{display:none;text-align:center;color:var(--muted);padding:30px}
+.cartbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:12px max(15px,calc((100vw - 1020px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:5;box-shadow:0 -5px 22px #52203712}.cartbar strong{font-size:14px}.cartbar small{display:block;color:var(--muted)}.primary{border:0;border-radius:11px;background:var(--pink);color:#fff;font-weight:850;padding:13px 17px;cursor:pointer}
+dialog{border:0;border-radius:18px;padding:0;width:min(590px,calc(100% - 24px));max-height:85vh;box-shadow:0 20px 80px #30102055}dialog::backdrop{background:#29101c88}.modalhead{padding:18px 20px;background:#f8c5da;display:flex;justify-content:space-between;align-items:center}.modalhead h2{margin:0;font-size:20px}.close{border:0;background:transparent;font-size:25px;cursor:pointer}.modalbody{padding:18px 20px;overflow:auto;max-height:65vh}.cartrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:11px 0}.cartrow small{display:block;color:var(--muted)}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#fff;border-radius:8px;width:29px;height:29px;font-weight:900;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:19px;font-weight:900;padding:17px 0}.field{display:block;margin:12px 0}.field label{display:block;font-weight:750;font-size:13px;margin-bottom:5px}.field input,.field textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;font:inherit}.pix{background:#fff4f8;border:1px dashed #e99abc;border-radius:12px;padding:13px;margin:15px 0}.pix b{display:block;font-size:18px;letter-spacing:.5px;overflow-wrap:anywhere}.actions{display:flex;gap:9px;flex-wrap:wrap}.secondary{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:12px 14px;font-weight:800;cursor:pointer}.note{font-size:12px;color:var(--muted)}footer{text-align:center;color:var(--muted);padding:10px 15px 35px;font-size:12px}
+@media(max-width:520px){.cartbar{align-items:center}.cartbar .primary{padding:12px}.products{grid-template-columns:1fr}.pricegrid span{flex:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="pill">CATÁLOGO PRONTA ENTREGA</div>
+  <div class="logo">pink<span>store</span></div>
+  <p>Perfumes, Body Splashes &amp; Linha Capilar<br>Escolha seus favoritos da Wepink e monte seu pedido.</p>
+  <div class="pricegrid">
+    <span>PERFUMES / COLÔNIAS<b>R$ 129,90</b></span>
+    <span>BODY SPLASHES (200ML)<b>R$ 49,90</b></span>
+    <span>PROTEÍNA CAPILAR (230ML)<b>R$ 119,90</b></span>
+    <span>BOOSTER CAPILAR (30ML)<b>R$ 69,90</b></span>
+  </div>
+</header>
+<main>
+  <div class="toolbar">
+    <input id="search" class="search" type="search" placeholder="Buscar produto ou fragrância..." aria-label="Buscar produtos">
+    <div class="filters">
+      <button class="filter active" data-filter="Todos">Todos</button>
+      <button class="filter" data-filter="Perfumes">Perfumes</button>
+      <button class="filter" data-filter="Body Splashes">Body Splashes</button>
+      <button class="filter" data-filter="Linha Capilar">Linha Capilar</button>
+    </div>
+  </div>
+  <div id="catalog"></div><p id="empty" class="empty">Nenhum produto encontrado. Tente outra busca.</p>
+</main>
+<footer>Pink Store • Catálogo Wepink • Selecione os produtos e envie seu pedido.</footer>
+<div class="cartbar"><div><strong id="cart-count">0 itens selecionados</strong><small id="cart-total">Total: R$ 0,00</small></div><button class="primary" id="open-cart">Ver carrinho</button></div>
+<dialog id="cart-dialog">
+ <div class="modalhead"><h2>Seu pedido</h2><button class="close" id="close-cart" aria-label="Fechar">×</button></div>
+ <div class="modalbody">
+  <div id="cart-items"></div>
+  <div class="total"><span>Total</span><span id="modal-total">R$ 0,00</span></div>
+  <div class="field"><label for="customer">Seu nome</label><input id="customer" placeholder="Como podemos te chamar?"></div>
+  <div class="field"><label for="delivery">Entrega ou retirada (opcional)</label><input id="delivery" placeholder="Bairro / endereço ou retirada"></div>
+  <div class="pix"><small>CHAVE PIX (celular)</small><b id="pix-key">87991636163</b><button class="secondary" id="copy-pix" style="margin-top:9px">Copiar chave Pix</button><p class="note">Confira o valor e os dados antes de realizar o pagamento. O pagamento não é processado por este site.</p></div>
+  <div class="actions"><button class="primary" id="send-order">Enviar pedido pelo WhatsApp</button><button class="secondary" id="copy-order">Copiar resumo do pedido</button></div>
+  <p class="note">O WhatsApp abrirá com a mensagem pronta para você escolher para quem enviar. O pedido só será confirmado após atendimento.</p>
+ </div>
+</dialog>
+<script>
+const products = [
+["Perfumes","Amadeirado especiado","Bomb One (100ml)","Marcante e envolvente com notas quentes e especiarias suaves.",129.90],
+["Perfumes","Amadeirado intenso","Bomb One Impact (100ml)","Versão mais profunda e sofisticada para ocasiões noturnas.",129.90],
+["Perfumes","Floral frutado","Celebrate Life (100ml)","Alegre e luminoso, com toque vibrante de frutas vermelhas.",129.90],
+["Perfumes","Floral oriental","Divine (100ml)","Elegante e feminino com fundo cremoso de baunilha e flores brancas.",129.90],
+["Perfumes","Floral romântico","Eternal Cherish (100ml)","Delicado e aconchegante, com pétalas frescas e toque adocicado.",129.90],
+["Perfumes","Gourmand doce","Eternal Sucré (100ml)","Doce envolvente com notas açucaradas, caramelo e baunilha.",129.90],
+["Perfumes","Oriental sensual","Fatal Black For Her (100ml)","Intenso e sedutor, combinando frutas escuras e baunilha quente.",129.90],
+["Perfumes","Floral frutado doce","Fatal Pink (100ml)","Moderno e vibrante, com dulçor equilibrado e alta fixação.",129.90],
+["Perfumes","Floral ambarado","Feive Celestial (100ml)","Sofisticado e radiante, com assinatura elegante de âmbar e jasmim.",129.90],
+["Perfumes","Oriental baunilha","Haylas Vanille (100ml)","Cremoso e aconchegante, destacando baunilha nobre e toque amadeirado.",129.90],
+["Perfumes","Floral fresco","Heaven (100ml)","Limpo e sofisticado, com notas florais suaves e almíscar.",129.90],
+["Perfumes","Fresco aquático","Heaven Blue (100ml)","Refrescante e leve, ideal para sensação prolongada de pós-banho.",129.90],
+["Perfumes","Floral branco","Heaven Bride (100ml)","Romântico e delicado, com buquê de flores brancas e toque aveludado.",129.90],
+["Perfumes","Floral amadeirado","Heaven V (100ml)","Equilíbrio entre frescor floral e fundo macio de madeiras claras.",129.90],
+["Perfumes","Frutado floral","Infinity Purple (100ml)","Envolvente e misterioso, com notas roxas frutadas e fundo doce.",129.90],
+["Perfumes","Floral almiscarado","L.you (100ml)","Íntimo e confortável, sensação de pele limpa e sofisticada.",129.90],
+["Perfumes","Chipre floral","Liberté Affair (100ml)","Marcante e chique, inspirado na alta perfumaria francesa.",129.90],
+["Perfumes","Floral intenso","Liberté Platiné (100ml)","Luminoso e sofisticado, com assinatura moderna e elegante.",129.90],
+["Perfumes","Floral gourmand","My We Belle (100ml)","Doce elegante com íris, flor de laranjeira e pralinê.",129.90],
+["Perfumes","Floral frutado leve","My We Daisy (100ml)","Jovem, delicado e primaveril, perfeito para o dia a dia.",129.90],
+["Perfumes","Floral doce","Obsessed Lovely (100ml)","Apaixonante e feminino, com notas frutadas e fundo cremoso.",129.90],
+["Perfumes","Gourmand cremoso","One Touch Latte (100ml)","Aconchegante e viciante, com notas lactônicas, baunilha e caramelo.",129.90],
+["Perfumes","Frutado tropical","Paradise (100ml)","Solar e vibrante, remetendo a dias quentes e frutas suculentas.",129.90],
+["Perfumes","Frutado fresco","Perfect Pear (100ml)","Suculento e elegante, com pera madura e frésia delicada.",129.90],
+["Perfumes","Floral frutado","Scarlette Radiance (50ml)","Compacto e intenso, com frutas vermelhas e fundo adocicado.",129.90],
+["Perfumes","Oriental amadeirado","Tyrie Royale (100ml)","Imponente e sofisticado, com notas quentes e resinosas.",129.90],
+["Perfumes","Floral gourmand","VF Choices Delight (100ml)","Doce na medida certa, combinando flores delicadas e baunilha.",129.90],
+["Perfumes","Oriental floral","VF Golden (100ml)","Campeão de elogios: quente, dourado, envolvente e sofisticado.",129.90],
+["Perfumes","Frutado solar","VF Tropical (75ml)","Refrescante e exótico, perfeito para climas quentes.",129.90],
+["Perfumes","Floral intenso","Wonbloom Fever (100ml)","Explosão floral vibrante com fundo quente e marcante.",129.90],
+["Perfumes","Floral oriental","Wonderful (100ml)","Clássico e feminino, com equilíbrio entre frescor e doçura.",129.90],
+["Body Splashes","Amadeirado suave","Bomb One","Refrescância marcante com toque quente e moderno.",49.90],
+["Body Splashes","Floral frutado","Cassera","Leve, elegante e versátil para reaplicar ao longo do dia.",49.90],
+["Body Splashes","Amadeirado fresco","Cèdre Raffi","Toque limpo de cedro com frescor aromático sofisticado.",49.90],
+["Body Splashes","Floral frutado","Celebrate Life","Vibrante e alegre, ideal para energizar a rotina.",49.90],
+["Body Splashes","Floral romântico","Eternal Cherish","Suave e delicado, perfeito para o pós-banho.",49.90],
+["Body Splashes","Oriental doce","Fatal Black For Her","Versão leve e envolvente do sucesso sensual da linha.",49.90],
+["Body Splashes","Frutado doce","Fatal Pink","Docinho, feminino e ótimo para combinar com o perfume.",49.90],
+["Body Splashes","Floral cremoso","Fatal White","Macio, limpo e aconchegante com toque de baunilha suave.",49.90],
+["Body Splashes","Floral ambarado","Feive Celestial","Elegante e luminoso para prolongar a sensação de frescor.",49.90],
+["Body Splashes","Baunilha suave","Haylas Vanille","Doce aconchegante de baunilha ideal para usar na pele.",49.90],
+["Body Splashes","Floral limpo","Heaven","Sensação de banho tomado com delicadeza floral.",49.90],
+["Body Splashes","Fresco aquático","Heaven Blue","Ultra refrescante e leve para os dias mais quentes.",49.90],
+["Body Splashes","Floral branco","Heaven Bride","Romântico, suave e delicado para o dia a dia.",49.90],
+["Body Splashes","Frutado floral","Heaven Pink","Feminino, alegre e docinho na medida certa.",49.90],
+["Body Splashes","Amadeirado frutado","Heaven Santal & Fig","Sofisticado, combinando figo fresco e sândalo cremoso.",49.90],
+["Body Splashes","Floral suave","Heaven V","Equilibrado, confortável e fácil de agradar.",49.90],
+["Body Splashes","Frutado envolvente","Infinity Purple","Notas frutadas vibrantes com fundo levemente adocicado.",49.90],
+["Body Splashes","Almiscarado leve","L.you","Cheirinho de pele limpa, macia e bem cuidada.",49.90],
+["Body Splashes","Floral sofisticado","Liberté Exclusif","Refrescância elegante inspirada na linha Liberté.",49.90],
+["Body Splashes","Frutado solar","My Trip Three","Leve e descontraído, com energia de férias e verão.",49.90],
+["Body Splashes","Floral fresco","My We Daisy","Delicado e primaveril para usar a qualquer hora.",49.90],
+["Body Splashes","Floral oriental","Obsessed","Envolvente e feminino com fixação surpreendente.",49.90],
+["Body Splashes","Oriental intenso","Obsessed Deluxe","Mais cremoso e marcante para quem ama cheiro doce.",49.90],
+["Body Splashes","Floral doce","Obsessed Lovely","Romântico e adocicado, sucesso absoluto no dia a dia.",49.90],
+["Body Splashes","Gourmand suave","One Touch Latte","Toque cremoso de baunilha e caramelo leve na pele.",49.90],
+["Body Splashes","Tropical fresco","Paradise","Frutado vibrante e refrescante para o corpo todo.",49.90],
+["Body Splashes","Frutado fresco","Perfect Pear","Pera suculenta com toque floral leve e elegante.",49.90],
+["Body Splashes","Frutado limpo","Pure Pear","Fresco, natural e revigorante para o pós-banho.",49.90],
+["Body Splashes","Frutado floral","Ruby Rhodolite","Brilhante e feminino, com notas de frutas vermelhas.",49.90],
+["Body Splashes","Frutado doce","Scarlette Radiance","Alegre, vibrante e perfeito para carregar na bolsa.",49.90],
+["Body Splashes","Cítrico solar","Verano Di Capri","Refrescante e luminoso com toque cítrico de verão.",49.90],
+["Body Splashes","Floral elegante","VF Choices","Versátil e sofisticado para qualquer ocasião.",49.90],
+["Body Splashes","Floral doce","VF Choices Delight","Delicado e adocicado com toque acolhedor.",49.90],
+["Body Splashes","Oriental floral","VF Golden","O queridinho em versão leve para brilhar o dia inteiro.",49.90],
+["Body Splashes","Amadeirado intenso","VF Onyx","Sofisticado e marcante com fundo amadeirado suave.",49.90],
+["Body Splashes","Frutado exótico","VF Tropical","Refrescante e solar para dias ensolarados.",49.90],
+["Body Splashes","Floral vibrante","Wonbloom Fever","Buquê floral alegre e envolvente.",49.90],
+["Body Splashes","Floral suave","Wonderful","Feminino, equilibrado e super agradável.",49.90],
+["Body Splashes","Oriental elegante","Yahya Aneeq","Exótico e refinado com toque quente suave.",49.90],
+["Linha Capilar","Tratamento & proteção","Proteína Condicionante My Hair Ultra Repair (230ml)","Alinha os fios, reduz o frizz, protege contra o calor do secador e da chapinha e deixa um perfume incrível no cabelo.",119.90],
+["Linha Capilar","Nutrição & brilho","Booster Repair Óleo Capilar (30ml)","Óleo reparador leve que sela as pontas, devolve a maciez imediata e dá brilho espelhado sem pesar os fios.",69.90]
+];
+const cart = new Map(); let activeFilter = "Todos";
+const money = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const catalog = document.getElementById("catalog");
+function render(){
+ const q=document.getElementById("search").value.toLocaleLowerCase("pt-BR");
+ catalog.innerHTML="";
+ const groups=["Perfumes","Body Splashes","Linha Capilar"];
+ let shown=0;
+ groups.forEach(group=>{
+  if(activeFilter!=="Todos"&&activeFilter!==group)return;
+  const items=products.map((p,i)=>({...{p,i}})).filter(x=>x.p[0]===group&&x.p.slice(1,4).join(" ").toLocaleLowerCase("pt-BR").includes(q));
+  if(!items.length)return; shown+=items.length;
+  const section=document.createElement("section");section.className="section";
+  const heading=document.createElement("h2");heading.textContent=group==="Perfumes"?"Perfumes & Desodorantes Colônia":group==="Body Splashes"?"Body Splashes — 200ml":"Linha Capilar Wepink";
+  const sub=document.createElement("p");sub.className="sub";sub.textContent=group==="Perfumes"?"Fragrâncias marcantes — R$ 129,90 cada":group==="Body Splashes"?"Perfumação leve e refrescante — R$ 49,90 cada":"Tratamento, brilho intenso e proteção para os fios";
+  const grid=document.createElement("div");grid.className="products";
+  items.forEach(({p,i})=>{
+   const card=document.createElement("article");card.className="product";
+   card.innerHTML=`<span class="tag">${p[1]}</span><h3>${p[2]}</h3><p class="desc">${p[3]}</p><div class="bottom"><span class="price">${money(p[4])}</span><button class="add">Adicionar +</button></div>`;
+   card.querySelector("button").addEventListener("click",()=>{cart.set(i,(cart.get(i)||0)+1);updateCart();card.querySelector("button").textContent="Adicionado ✓";setTimeout(()=>card.querySelector("button").textContent="Adicionar +",900)});
+   grid.append(card);
+  });
+  section.append(heading,sub,grid);catalog.append(section);
+ });
+ document.getElementById("empty").style.display=shown?"none":"block";
+}
+function total(){let t=0;cart.forEach((qty,i)=>t+=products[i][4]*qty);return t}
+function updateCart(){
+ let count=0;cart.forEach(q=>count+=q);
+ document.getElementById("cart-count").textContent=`${count} ${count===1?"item selecionado":"itens selecionados"}`;
+ document.getElementById("cart-total").textContent="Total: "+money(total());
+}
+function orderText(){
+ let lines=["Olá! Gostaria de fazer este pedido na Pink Store:",""];
+ cart.forEach((qty,i)=>{const p=products[i];lines.push(`${qty}x ${p[2]} — ${money(p[4]*qty)}`)});
+ lines.push("",`Total: ${money(total())}`);
+ const name=document.getElementById("customer").value.trim();const delivery=document.getElementById("delivery").value.trim();
+ if(name)lines.push("Nome: "+name);if(delivery)lines.push("Entrega/retirada: "+delivery);
+ lines.push("Chave Pix: 87991636163","Aguardo confirmação. Obrigado(a)!");
+ return lines.join("\n");
+}
+function renderCart(){
+ const wrap=document.getElementById("cart-items");wrap.innerHTML="";
+ if(!cart.size){wrap.innerHTML='<p class="note">Seu carrinho está vazio. Volte ao catálogo e adicione seus produtos favoritos.</p>'}
+ cart.forEach((qty,i)=>{
+  const p=products[i],row=document.createElement("div");row.className="cartrow";
+  const info=document.createElement("div");info.innerHTML=`<strong>${p[2]}</strong><small>${money(p[4])} cada • ${money(p[4]*qty)}</small>`;
+  const controls=document.createElement("div");controls.className="qty";
+  const minus=document.createElement("button");minus.textContent="−";minus.setAttribute("aria-label","Diminuir quantidade");
+  const number=document.createElement("strong");number.textContent=qty;
+  const plus=document.createElement("button");plus.textContent="+";plus.setAttribute("aria-label","Aumentar quantidade");
+  minus.onclick=()=>{if(qty<=1)cart.delete(i);else cart.set(i,qty-1);renderCart();updateCart()};
+  plus.onclick=()=>{cart.set(i,qty+1);renderCart();updateCart()};
+  controls.append(minus,number,plus);row.append(info,controls);wrap.append(row);
+ });
+ document.getElementById("modal-total").textContent=money(total());
+}
+document.querySelectorAll(".filter").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));btn.classList.add("active");activeFilter=btn.dataset.filter;render()}));
+document.getElementById("search").addEventListener("input",render);
+const dlg=document.getElementById("cart-dialog");
+document.getElementById("open-cart").onclick=()=>{renderCart();dlg.showModal()};
+document.getElementById("close-cart").onclick=()=>dlg.close();
+document.getElementById("copy-pix").onclick=async()=>{await navigator.clipboard.writeText("87991636163");document.getElementById("copy-pix").textContent="Chave copiada ✓"};
+document.getElementById("copy-order").onclick=async()=>{if(!cart.size){alert("Adicione pelo menos um produto ao carrinho.");return}await navigator.clipboard.writeText(orderText());document.getElementById("copy-order").textContent="Resumo copiado ✓"};
+document.getElementById("send-order").onclick=()=>{if(!cart.size){alert("Adicione pelo menos um produto ao carrinho.");return}window.open("https://wa.me/5587991636163?text="+encodeURIComponent(orderText()),"_blank")};
+render();updateCart();
+</script>
+</body></html>
