@@ -16,11 +16,14 @@ header p{max-width:540px;margin:18px auto;color:#704b5c}
 main{max-width:1050px;margin:auto;padding:22px 15px 90px}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.search{flex:1;min-width:200px;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit;background:#fff}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:white;border-radius:99px;padding:10px 13px;font-weight:700;color:var(--muted);cursor:pointer}.filter.active{background:var(--pink);color:#fff;border-color:var(--pink)}
 .section{margin:28px 0}.section h2{font-size:19px;margin:0 0 5px;background:#f8c5da;padding:12px 15px;border-left:5px solid var(--pink);border-radius:10px}.section .sub{color:var(--muted);margin:0 0 13px;font-size:13px}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:11px}
-.product{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:7px;min-height:160px;box-shadow:0 2px 8px #7a36500a}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:13px}
+.product{background:white;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 2px 8px #7a36500a}
+.thumb{width:100%;aspect-ratio:1/1;background:#fff;border:1px solid #f7e4ed;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
+.thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.thumb .noimg{font-size:12px;color:var(--muted);text-align:center;padding:12px}
 .tag{font-size:10px;font-weight:850;letter-spacing:.35px;color:#a34e75;background:#fde8f1;padding:3px 7px;border-radius:99px;align-self:flex-start}.product h3{margin:0;font-size:15px}.desc{margin:0;color:var(--muted);font-size:12px;flex:1}.bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}.price{font-weight:900;color:var(--pink);font-size:16px}.add{background:var(--pink);border:0;color:white;padding:9px 13px;border-radius:9px;font-weight:800;cursor:pointer}.add:active,.filter:active,button:active{transform:scale(.98)}
 .empty{display:none;text-align:center;color:var(--muted);padding:30px}
-.cartbar{position:fixed;bottom:65px;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:12px max(15px,calc((100vw - 1020px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:5;box-shadow:0 -5px 22px #52203712}.cartbar strong{font-size:14px}.cartbar small{display:block;color:var(--muted)}.primary{border:0;border-radius:11px;background:var(--pink);color:#fff;font-weight:850;padding:13px 17px;cursor:pointer}
+.cartbar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:12px max(15px,calc((100vw - 1020px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:5;box-shadow:0 -5px 22px #52203712}.cartbar strong{font-size:14px}.cartbar small{display:block;color:var(--muted)}.primary{border:0;border-radius:11px;background:var(--pink);color:#fff;font-weight:850;padding:13px 17px;cursor:pointer}
 dialog{border:0;border-radius:18px;padding:0;width:min(590px,calc(100% - 24px));max-height:85vh;box-shadow:0 20px 80px #30102055}dialog::backdrop{background:#29101c88}.modalhead{padding:18px 20px;background:#f8c5da;display:flex;justify-content:space-between;align-items:center}.modalhead h2{margin:0;font-size:20px}.close{border:0;background:transparent;font-size:25px;cursor:pointer}.modalbody{padding:18px 20px;overflow:auto;max-height:65vh}.cartrow{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:11px 0}.cartrow small{display:block;color:var(--muted)}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#fff;border-radius:8px;width:29px;height:29px;font-weight:900;cursor:pointer}.total{display:flex;justify-content:space-between;font-size:19px;font-weight:900;padding:17px 0}.field{display:block;margin:12px 0}.field label{display:block;font-weight:750;font-size:13px;margin-bottom:5px}.field input,.field textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;font:inherit}.pix{background:#fff4f8;border:1px dashed #e99abc;border-radius:12px;padding:13px;margin:15px 0}.pix b{display:block;font-size:18px;letter-spacing:.5px;overflow-wrap:anywhere}.actions{display:flex;gap:9px;flex-wrap:wrap}.secondary{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:12px 14px;font-weight:800;cursor:pointer}.note{font-size:12px;color:var(--muted)}footer{text-align:center;color:var(--muted);padding:10px 15px 35px;font-size:12px}
 @media(max-width:520px){.cartbar{align-items:center}.cartbar .primary{padding:12px}.products{grid-template-columns:1fr}.pricegrid span{flex:1}}
 </style>
@@ -65,78 +68,82 @@ dialog{border:0;border-radius:18px;padding:0;width:min(590px,calc(100% - 24px));
 </dialog>
 <script>
 const products = [
-["Perfumes","Amadeirado especiado","Bomb One (100ml)","Marcante e envolvente com notas quentes e especiarias suaves.",129.90],
-["Perfumes","Amadeirado intenso","Bomb One Impact (100ml)","Versão mais profunda e sofisticada para ocasiões noturnas.",129.90],
-["Perfumes","Floral frutado","Celebrate Life (100ml)","Alegre e luminoso, com toque vibrante de frutas vermelhas.",129.90],
-["Perfumes","Floral oriental","Divine (100ml)","Elegante e feminino com fundo cremoso de baunilha e flores brancas.",129.90],
-["Perfumes","Floral romântico","Eternal Cherish (100ml)","Delicado e aconchegante, com pétalas frescas e toque adocicado.",129.90],
-["Perfumes","Gourmand doce","Eternal Sucré (100ml)","Doce envolvente com notas açucaradas, caramelo e baunilha.",129.90],
-["Perfumes","Oriental sensual","Fatal Black For Her (100ml)","Intenso e sedutor, combinando frutas escuras e baunilha quente.",129.90],
-["Perfumes","Floral frutado doce","Fatal Pink (100ml)","Moderno e vibrante, com dulçor equilibrado e alta fixação.",129.90],
-["Perfumes","Floral ambarado","Feive Celestial (100ml)","Sofisticado e radiante, com assinatura elegante de âmbar e jasmim.",129.90],
-["Perfumes","Oriental baunilha","Haylas Vanille (100ml)","Cremoso e aconchegante, destacando baunilha nobre e toque amadeirado.",129.90],
-["Perfumes","Floral fresco","Heaven (100ml)","Limpo e sofisticado, com notas florais suaves e almíscar.",129.90],
-["Perfumes","Fresco aquático","Heaven Blue (100ml)","Refrescante e leve, ideal para sensação prolongada de pós-banho.",129.90],
-["Perfumes","Floral branco","Heaven Bride (100ml)","Romântico e delicado, com buquê de flores brancas e toque aveludado.",129.90],
-["Perfumes","Floral amadeirado","Heaven V (100ml)","Equilíbrio entre frescor floral e fundo macio de madeiras claras.",129.90],
-["Perfumes","Frutado floral","Infinity Purple (100ml)","Envolvente e misterioso, com notas roxas frutadas e fundo doce.",129.90],
-["Perfumes","Floral almiscarado","L.you (100ml)","Íntimo e confortável, sensação de pele limpa e sofisticada.",129.90],
-["Perfumes","Chipre floral","Liberté Affair (100ml)","Marcante e chique, inspirado na alta perfumaria francesa.",129.90],
-["Perfumes","Floral intenso","Liberté Platiné (100ml)","Luminoso e sofisticado, com assinatura moderna e elegante.",129.90],
-["Perfumes","Floral gourmand","My We Belle (100ml)","Doce elegante com íris, flor de laranjeira e pralinê.",129.90],
-["Perfumes","Floral frutado leve","My We Daisy (100ml)","Jovem, delicado e primaveril, perfeito para o dia a dia.",129.90],
-["Perfumes","Floral doce","Obsessed Lovely (100ml)","Apaixonante e feminino, com notas frutadas e fundo cremoso.",129.90],
-["Perfumes","Gourmand cremoso","One Touch Latte (100ml)","Aconchegante e viciante, com notas lactônicas, baunilha e caramelo.",129.90],
-["Perfumes","Frutado tropical","Paradise (100ml)","Solar e vibrante, remetendo a dias quentes e frutas suculentas.",129.90],
-["Perfumes","Frutado fresco","Perfect Pear (100ml)","Suculento e elegante, com pera madura e frésia delicada.",129.90],
-["Perfumes","Floral frutado","Scarlette Radiance (50ml)","Compacto e intenso, com frutas vermelhas e fundo adocicado.",129.90],
-["Perfumes","Oriental amadeirado","Tyrie Royale (100ml)","Imponente e sofisticado, com notas quentes e resinosas.",129.90],
-["Perfumes","Floral gourmand","VF Choices Delight (100ml)","Doce na medida certa, combinando flores delicadas e baunilha.",129.90],
-["Perfumes","Oriental floral","VF Golden (100ml)","Campeão de elogios: quente, dourado, envolvente e sofisticado.",129.90],
-["Perfumes","Frutado solar","VF Tropical (75ml)","Refrescante e exótico, perfeito para climas quentes.",129.90],
-["Perfumes","Floral intenso","Wonbloom Fever (100ml)","Explosão floral vibrante com fundo quente e marcante.",129.90],
-["Perfumes","Floral oriental","Wonderful (100ml)","Clássico e feminino, com equilíbrio entre frescor e doçura.",129.90],
-["Body Splashes","Amadeirado suave","Bomb One","Refrescância marcante com toque quente e moderno.",49.90],
-["Body Splashes","Floral frutado","Cassera","Leve, elegante e versátil para reaplicar ao longo do dia.",49.90],
-["Body Splashes","Amadeirado fresco","Cèdre Raffi","Toque limpo de cedro com frescor aromático sofisticado.",49.90],
-["Body Splashes","Floral frutado","Celebrate Life","Vibrante e alegre, ideal para energizar a rotina.",49.90],
-["Body Splashes","Floral romântico","Eternal Cherish","Suave e delicado, perfeito para o pós-banho.",49.90],
-["Body Splashes","Oriental doce","Fatal Black For Her","Versão leve e envolvente do sucesso sensual da linha.",49.90],
-["Body Splashes","Frutado doce","Fatal Pink","Docinho, feminino e ótimo para combinar com o perfume.",49.90],
-["Body Splashes","Floral cremoso","Fatal White","Macio, limpo e aconchegante com toque de baunilha suave.",49.90],
-["Body Splashes","Floral ambarado","Feive Celestial","Elegante e luminoso para prolongar a sensação de frescor.",49.90],
-["Body Splashes","Baunilha suave","Haylas Vanille","Doce aconchegante de baunilha ideal para usar na pele.",49.90],
-["Body Splashes","Floral limpo","Heaven","Sensação de banho tomado com delicadeza floral.",49.90],
-["Body Splashes","Fresco aquático","Heaven Blue","Ultra refrescante e leve para os dias mais quentes.",49.90],
-["Body Splashes","Floral branco","Heaven Bride","Romântico, suave e delicado para o dia a dia.",49.90],
-["Body Splashes","Frutado floral","Heaven Pink","Feminino, alegre e docinho na medida certa.",49.90],
-["Body Splashes","Amadeirado frutado","Heaven Santal & Fig","Sofisticado, combinando figo fresco e sândalo cremoso.",49.90],
-["Body Splashes","Floral suave","Heaven V","Equilibrado, confortável e fácil de agradar.",49.90],
-["Body Splashes","Frutado envolvente","Infinity Purple","Notas frutadas vibrantes com fundo levemente adocicado.",49.90],
-["Body Splashes","Almiscarado leve","L.you","Cheirinho de pele limpa, macia e bem cuidada.",49.90],
-["Body Splashes","Floral sofisticado","Liberté Exclusif","Refrescância elegante inspirada na linha Liberté.",49.90],
-["Body Splashes","Frutado solar","My Trip Three","Leve e descontraído, com energia de férias e verão.",49.90],
-["Body Splashes","Floral fresco","My We Daisy","Delicado e primaveril para usar a qualquer hora.",49.90],
-["Body Splashes","Floral oriental","Obsessed","Envolvente e feminino com fixação surpreendente.",49.90],
-["Body Splashes","Oriental intenso","Obsessed Deluxe","Mais cremoso e marcante para quem ama cheiro doce.",49.90],
-["Body Splashes","Floral doce","Obsessed Lovely","Romântico e adocicado, sucesso absoluto no dia a dia.",49.90],
-["Body Splashes","Gourmand suave","One Touch Latte","Toque cremoso de baunilha e caramelo leve na pele.",49.90],
-["Body Splashes","Tropical fresco","Paradise","Frutado vibrante e refrescante para o corpo todo.",49.90],
-["Body Splashes","Frutado fresco","Perfect Pear","Pera suculenta com toque floral leve e elegante.",49.90],
-["Body Splashes","Frutado limpo","Pure Pear","Fresco, natural e revigorante para o pós-banho.",49.90],
-["Body Splashes","Frutado floral","Ruby Rhodolite","Brilhante e feminino, com notas de frutas vermelhas.",49.90],
-["Body Splashes","Frutado doce","Scarlette Radiance","Alegre, vibrante e perfeito para carregar na bolsa.",49.90],
-["Body Splashes","Cítrico solar","Verano Di Capri","Refrescante e luminoso com toque cítrico de verão.",49.90],
-["Body Splashes","Floral elegante","VF Choices","Versátil e sofisticado para qualquer ocasião.",49.90],
-["Body Splashes","Floral doce","VF Choices Delight","Delicado e adocicado com toque acolhedor.",49.90],
-["Body Splashes","Oriental floral","VF Golden","O queridinho em versão leve para brilhar o dia inteiro.",49.90],
-["Body Splashes","Amadeirado intenso","VF Onyx","Sofisticado e marcante com fundo amadeirado suave.",49.90],
-["Body Splashes","Frutado exótico","VF Tropical","Refrescante e solar para dias ensolarados.",49.90],
-["Body Splashes","Floral vibrante","Wonbloom Fever","Buquê floral alegre e envolvente.",49.90],
-["Body Splashes","Floral suave","Wonderful","Feminino, equilibrado e super agradável.",49.90],
-["Body Splashes","Oriental elegante","Yahya Aneeq","Exótico e refinado com toque quente suave.",49.90],
-["Linha Capilar","Tratamento & proteção","Proteína Condicionante My Hair Ultra Repair (230ml)","Alinha os fios, reduz o frizz, protege contra o calor do secador e da chapinha e deixa um perfume incrível no cabelo.",119.90],
-["Linha Capilar","Nutrição & brilho","Booster Repair Óleo Capilar (30ml)","Óleo reparador leve que sela as pontas, devolve a maciez imediata e dá brilho espelhado sem pesar os fios.",69.90]
+["Perfumes","Amadeirado especiado","Bomb One (100ml)","Marcante e envolvente com notas quentes e especiarias suaves.",129.90,""],
+["Perfumes","Amadeirado intenso","Bomb One Impact (100ml)","Versão mais profunda e sofisticada para ocasiões noturnas.",129.90,"img/96407.jpg"],
+["Perfumes","Floral frutado","Celebrate Life (100ml)","Alegre e luminoso, com toque vibrante de frutas vermelhas.",129.90,"img/96329.jpg"],
+["Perfumes","Floral oriental","Divine (100ml)","Elegante e feminino com fundo cremoso de baunilha e flores brancas.",129.90,"img/96380.jpg"],
+["Perfumes","Floral romântico","Eternal Cherish (100ml)","Delicado e aconchegante, com pétalas frescas e toque adocicado.",129.90,"img/96347.jpg"],
+["Perfumes","Gourmand doce","Eternal Sucré (100ml)","Doce envolvente com notas açucaradas, caramelo e baunilha.",129.90,"img/96338.jpg"],
+["Perfumes","Oriental sensual","Fatal Black For Her (100ml)","Intenso e sedutor, combinando frutas escuras e baunilha quente.",129.90,"img/96365.jpg"],
+["Perfumes","Floral frutado doce","Fatal Pink (100ml)","Moderno e vibrante, com dulçor equilibrado e alta fixação.",129.90,"img/96389.jpg"],
+["Perfumes","Floral ambarado","Feive Celestial (100ml)","Sofisticado e radiante, com assinatura elegante de âmbar e jasmim.",129.90,"img/96335.jpg"],
+["Perfumes","Oriental baunilha","Haylas Vanille (100ml)","Cremoso e aconchegante, destacando baunilha nobre e toque amadeirado.",129.90,"img/96401.jpg"],
+["Perfumes","Floral fresco","Heaven (100ml)","Limpo e sofisticado, com notas florais suaves e almíscar.",129.90,"img/96350.jpg"],
+["Perfumes","Fresco aquático","Heaven Blue (100ml)","Refrescante e leve, ideal para sensação prolongada de pós-banho.",129.90,"img/96344.jpg"],
+["Perfumes","Floral branco","Heaven Bride (100ml)","Romântico e delicado, com buquê de flores brancas e toque aveludado.",129.90,"img/96374.jpg"],
+["Perfumes","Floral amadeirado","Heaven V (100ml)","Equilíbrio entre frescor floral e fundo macio de madeiras claras.",129.90,"img/96395.jpg"],
+["Perfumes","Frutado floral","Infinity Purple (100ml)","Envolvente e misterioso, com notas roxas frutadas e fundo doce.",129.90,"img/96383.jpg"],
+["Perfumes","Floral almiscarado","L.you (100ml)","Íntimo e confortável, sensação de pele limpa e sofisticada.",129.90,"img/96377.jpg"],
+["Perfumes","Chipre floral","Liberté Affair (100ml)","Marcante e chique, inspirado na alta perfumaria francesa.",129.90,"img/96413.jpg"],
+["Perfumes","Floral intenso","Liberté Platiné (100ml)","Luminoso e sofisticado, com assinatura moderna e elegante.",129.90,"img/96341.jpg"],
+["Perfumes","Floral gourmand","My We Belle (100ml)","Doce elegante com íris, flor de laranjeira e pralinê.",129.90,"img/96356.jpg"],
+["Perfumes","Floral frutado leve","My We Daisy (100ml)","Jovem, delicado e primaveril, perfeito para o dia a dia.",129.90,"img/96371.jpg"],
+["Perfumes","Floral doce","Obsessed Lovely (100ml)","Apaixonante e feminino, com notas frutadas e fundo cremoso.",129.90,"img/96332.jpg"],
+["Perfumes","Gourmand cremoso","One Touch Latte (100ml)","Aconchegante e viciante, com notas lactônicas, baunilha e caramelo.",129.90,"img/96416.jpg"],
+["Perfumes","Frutado tropical","Paradise (100ml)","Solar e vibrante, remetendo a dias quentes e frutas suculentas.",129.90,"img/96353.jpg"],
+["Perfumes","Frutado fresco","Perfect Pear (100ml)","Suculento e elegante, com pera madura e frésia delicada.",129.90,"img/96404.jpg"],
+["Perfumes","Floral frutado","Scarlette Radiance (50ml)","Compacto e intenso, com frutas vermelhas e fundo adocicado.",129.90,"img/96368.jpg"],
+["Perfumes","Oriental amadeirado","Tyrie Royale (100ml)","Imponente e sofisticado, com notas quentes e resinosas.",129.90,"img/96386.jpg"],
+["Perfumes","Floral gourmand","VF Choices Delight (100ml)","Doce na medida certa, combinando flores delicadas e baunilha.",129.90,"img/96362.jpg"],
+["Perfumes","Oriental floral","VF Golden (100ml)","Campeão de elogios: quente, dourado, envolvente e sofisticado.",129.90,"img/96359.jpg"],
+["Perfumes","Frutado solar","VF Tropical (75ml)","Refrescante e exótico, perfeito para climas quentes.",129.90,"img/96410.jpg"],
+["Perfumes","Floral intenso","Wonbloom Fever (100ml)","Explosão floral vibrante com fundo quente e marcante.",129.90,"img/96392.jpg"],
+["Perfumes","Floral oriental","Wonderful (100ml)","Clássico e feminino, com equilíbrio entre frescor e doçura.",129.90,"img/96398.jpg"],
+["Body Splashes","Amadeirado suave","Bomb One","Refrescância marcante com toque quente e moderno.",49.90,"img/96311.jpg"],
+["Body Splashes","Floral frutado","Cassera","Leve, elegante e versátil para reaplicar ao longo do dia.",49.90,"img/96290.jpg"],
+["Body Splashes","Amadeirado fresco","Cèdre Raffi","Toque limpo de cedro com frescor aromático sofisticado.",49.90,"img/96281.jpg"],
+["Body Splashes","Floral frutado","Celebrate Life","Vibrante e alegre, ideal para energizar a rotina.",49.90,"img/96236.jpg"],
+["Body Splashes","Floral oriental","Divine","Elegante e feminino com fundo cremoso de baunilha e flores brancas.",49.90,"img/96218.jpg"],
+["Body Splashes","Floral romântico","Eternal Cherish","Suave e delicado, perfeito para o pós-banho.",49.90,"img/96269.jpg"],
+["Body Splashes","Oriental doce","Fatal Black For Her","Versão leve e envolvente do sucesso sensual da linha.",49.90,"img/96263.jpg"],
+["Body Splashes","Frutado doce","Fatal Pink","Docinho, feminino e ótimo para combinar com o perfume.",49.90,"img/96299.jpg"],
+["Body Splashes","Floral cremoso","Fatal White","Macio, limpo e aconchegante com toque de baunilha suave.",49.90,"img/96206.jpg"],
+["Body Splashes","Floral ambarado","Feive Celestial","Elegante e luminoso para prolongar a sensação de frescor.",49.90,"img/96278.jpg"],
+["Body Splashes","Baunilha suave","Haylas Vanille","Doce aconchegante de baunilha ideal para usar na pele.",49.90,"img/96317.jpg"],
+["Body Splashes","Floral limpo","Heaven","Sensação de banho tomado com delicadeza floral.",49.90,"img/96239.jpg"],
+["Body Splashes","Fresco aquático","Heaven Blue","Ultra refrescante e leve para os dias mais quentes.",49.90,"img/96245.jpg"],
+["Body Splashes","Floral branco","Heaven Bride","Romântico, suave e delicado para o dia a dia.",49.90,"img/96284.jpg"],
+["Body Splashes","Frutado floral","Heaven Pink","Feminino, alegre e docinho na medida certa.",49.90,"img/96215.jpg"],
+["Body Splashes","Amadeirado frutado","Heaven Santal & Fig","Sofisticado, combinando figo fresco e sândalo cremoso.",49.90,"img/96272.jpg"],
+["Body Splashes","Floral suave","Heaven V","Equilibrado, confortável e fácil de agradar.",49.90,"img/96323.jpg"],
+["Body Splashes","Frutado envolvente","Infinity Purple","Notas frutadas vibrantes com fundo levemente adocicado.",49.90,"img/96287.jpg"],
+["Body Splashes","Frutado envolvente","Infinity Tawny","Intenso e sofisticado, com notas frutadas quentes e toque adocicado.",49.90,"img/96257.jpg"],
+["Body Splashes","Almiscarado leve","L.you","Cheirinho de pele limpa, macia e bem cuidada.",49.90,"img/96305.jpg"],
+["Body Splashes","Floral radiante","Latina","Vibrante, solar e marcante com assinatura floral envolvente.",49.90,"img/96254.jpg"],
+["Body Splashes","Chipre floral","Liberté","Clássico e elegante, trazendo o frescor sofisticado da linha Liberté.",49.90,"img/96314.jpg"],
+["Body Splashes","Floral sofisticado","Liberté Exclusif","Refrescância elegante inspirada na linha Liberté.",49.90,"img/96203.jpg"],
+["Body Splashes","Frutado solar","My Trip Three","Leve e descontraído, com energia de férias e verão.",49.90,"img/96260.jpg"],
+["Body Splashes","Floral fresco","My We Daisy","Delicado e primaveril para usar a qualquer hora.",49.90,"img/96293.jpg"],
+["Body Splashes","Floral oriental","Obsessed","Envolvente e feminino com fixação surpreendente.",49.90,"img/96251.jpg"],
+["Body Splashes","Oriental intenso","Obsessed Deluxe","Mais cremoso e marcante para quem ama cheiro doce.",49.90,"img/96266.jpg"],
+["Body Splashes","Floral doce","Obsessed Lovely","Romântico e adocicado, sucesso absoluto no dia a dia.",49.90,"img/96320.jpg"],
+["Body Splashes","Gourmand suave","One Touch Latte","Toque cremoso de baunilha e caramelo leve na pele.",49.90,"img/96326.jpg"],
+["Body Splashes","Tropical fresco","Paradise","Frutado vibrante e refrescante para o corpo todo.",49.90,"img/96212.jpg"],
+["Body Splashes","Frutado fresco","Perfect Pear","Pera suculenta com toque floral leve e elegante.",49.90,"img/96224.jpg"],
+["Body Splashes","Frutado limpo","Pure Pear","Fresco, natural e revigorante para o pós-banho.",49.90,"img/96233.jpg"],
+["Body Splashes","Frutado floral","Ruby Rhodolite","Brilhante e feminino, com notas de frutas vermelhas.",49.90,"img/96308.jpg"],
+["Body Splashes","Frutado doce","Scarlette Radiance","Alegre, vibrante e perfeito para carregar na bolsa.",49.90,"img/96230.jpg"],
+["Body Splashes","Cítrico solar","Verano Di Capri","Refrescante e luminoso com toque cítrico de verão.",49.90,"img/96221.jpg"],
+["Body Splashes","Floral elegante","VF Choices","Versátil e sofisticado para qualquer ocasião.",49.90,"img/96200.jpg"],
+["Body Splashes","Floral doce","VF Choices Delight","Delicado e adocicado com toque acolhedor.",49.90,"img/96227.jpg"],
+["Body Splashes","Oriental floral","VF Golden","O queridinho em versão leve para brilhar o dia inteiro.",49.90,"img/96275.jpg"],
+["Body Splashes","Amadeirado intenso","VF Onyx","Sofisticado e marcante com fundo amadeirado suave.",49.90,"img/96302.jpg"],
+["Body Splashes","Frutado exótico","VF Tropical","Refrescante e solar para dias ensolarados.",49.90,"img/96248.jpg"],
+["Body Splashes","Floral vibrante","Wonbloom Fever","Buquê floral alegre e envolvente.",49.90,"img/96209.jpg"],
+["Body Splashes","Floral suave","Wonderful","Feminino, equilibrado e super agradável.",49.90,"img/96242.jpg"],
+["Body Splashes","Oriental elegante","Yahya Aneeq","Exótico e refinado com toque quente suave.",49.90,"img/96296.jpg"],
+["Linha Capilar","Tratamento & proteção","Proteína Condicionante My Hair Ultra Repair (230ml)","Alinha os fios, reduz o frizz, protege contra o calor do secador e da chapinha e deixa um perfume incrível no cabelo.",119.90,"img/96194.jpg"],
+["Linha Capilar","Nutrição & brilho","Booster Repair Óleo Capilar (30ml)","Óleo reparador leve que sela as pontas, devolve a maciez imediata e dá brilho espelhado sem pesar os fios.",69.90,"img/96197.jpg"]
 ];
 const cart = new Map(); let activeFilter = "Todos";
 const money = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
@@ -148,7 +155,7 @@ function render(){
  let shown=0;
  groups.forEach(group=>{
   if(activeFilter!=="Todos"&&activeFilter!==group)return;
-  const items=products.map((p,i)=>({...{p,i}})).filter(x=>x.p[0]===group&&x.p.slice(1,4).join(" ").toLocaleLowerCase("pt-BR").includes(q));
+  const items=products.map((p,i)=>({p,i})).filter(x=>x.p[0]===group&&x.p.slice(1,4).join(" ").toLocaleLowerCase("pt-BR").includes(q));
   if(!items.length)return; shown+=items.length;
   const section=document.createElement("section");section.className="section";
   const heading=document.createElement("h2");heading.textContent=group==="Perfumes"?"Perfumes & Desodorantes Colônia":group==="Body Splashes"?"Body Splashes — 200ml":"Linha Capilar Wepink";
@@ -156,7 +163,8 @@ function render(){
   const grid=document.createElement("div");grid.className="products";
   items.forEach(({p,i})=>{
    const card=document.createElement("article");card.className="product";
-   card.innerHTML=`<span class="tag">${p[1]}</span><h3>${p[2]}</h3><p class="desc">${p[3]}</p><div class="bottom"><span class="price">${money(p[4])}</span><button class="add">Adicionar +</button></div>`;
+   const imgHtml=p[5]?`<img src="${p[5]}" alt="${p[2]}" loading="lazy">`:`<span class="noimg">${p[2]}</span>`;
+   card.innerHTML=`<div class="thumb">${imgHtml}</div><span class="tag">${p[1]}</span><h3>${p[2]}</h3><p class="desc">${p[3]}</p><div class="bottom"><span class="price">${money(p[4])}</span><button class="add">Adicionar +</button></div>`;
    card.querySelector("button").addEventListener("click",()=>{cart.set(i,(cart.get(i)||0)+1);updateCart();card.querySelector("button").textContent="Adicionado ✓";setTimeout(()=>card.querySelector("button").textContent="Adicionar +",900)});
    grid.append(card);
   });
